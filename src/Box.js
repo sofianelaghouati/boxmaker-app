@@ -11,7 +11,7 @@ class Box extends Component{
 
         return(
             <div style={appliedStyle}>
-                <button>X</button>
+                <button onClick={this.props.removeBox}>X</button>
             </div>
             
         )

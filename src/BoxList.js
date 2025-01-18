@@ -6,11 +6,10 @@ class BoxList extends Component{
     constructor(props){
         super(props)
         this.state = {
-            boxes: [{
-                width:10, height: 20, backgroundColor: "orange"
-            }]
+            boxes: []
         }
         this.create = this.create.bind(this)
+        this.delete = this.delete.bind(this)
     }
 
     create(newBox){
@@ -19,9 +18,15 @@ class BoxList extends Component{
         })
     }
 
+    delete(id){
+        this.setState({
+            boxes: this.state.boxes.filter(box=> box.id !== id)
+        })
+    }
+
     render(){
         const boxes = this.state.boxes.map(box => (
-            <Box width={box.width} height={box.height} backgroundColor={box.backgroundColor}/>
+            <Box key={box.id} width={box.width} height={box.height} backgroundColor={box.backgroundColor} id={box.id} removeBox={()=>this.delete(box.id)}/>
         ));
         return (
             <div>
